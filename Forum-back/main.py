@@ -1,3 +1,6 @@
+import os
+
+from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException
 from database import SessionLocal, engine, Base
 from models import Post
@@ -8,9 +11,11 @@ from schemas import PostCreate, PostUpdate, ResponsePost
 
 app = FastAPI()
 
+load_dotenv()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[os.getenv("FRONT_END_URL")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
