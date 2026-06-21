@@ -90,12 +90,13 @@ export default function Home()
   return (
 
     <div>
-      <h1> Forum </h1>
+      <h1 className = "text-3xl font-bold mb-4"> Forum </h1>
       <div>
         <input 
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className = "border p-2 w-[300px] mb-2 rounded text-black"
       />
       </div>
 
@@ -104,43 +105,41 @@ export default function Home()
         placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        className = "border p-2 w-[300px] mb-2 rounded text-black"
       />
       </div>
 
-      <button onClick={() =>{createPost()}}>Create Post</button>
+      <button onClick={() =>{createPost()}} className= "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Create Post</button>
 
   
     {posts.map((post) => (
       <div 
         key= {post.id}
-        style={{
-        border: "1px solid #ccc",
-        padding: "10px",
-        marginBottom: "10px",
-        width: "400px"
-        }}
+        className = "border p-4 mb-3 w-[400px] rounded-lg shadow"
       >
         {editingId === post.id ? (
           <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
             <input 
               value={editTitle}
               onChange={(e) => setEditTitle(e.target.value)}
+              className="text-black border p-2 rounded"
             />
             <input 
               value={editContent}
               onChange={(e) => setEditContent(e.target.value)}
+              className="text-black border p-2 rounded"
             />
-            <button onClick={() => updatePost()} style={{marginLeft: "auto", border: "1px solid #ccc", padding: "2px", width: "fit-content"}}> Save </button>
+            <button onClick={() => updatePost()} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" style={{marginLeft: "auto"}}> Save </button>
           </div>
         ) : (
           <div>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
+            <h3  className="text-xl font-bold" >{post.title}</h3>
+            <p className="text-gray-600" >{post.content}</p>
           </div>
         )}
 
-        <button onClick={() => deletePost(post.id)} style={{marginRight: "10px", border: "1px solid #ccc", padding: "2px"}}> Delete </button>
-        <button onClick={() => startEditing(post)} style={{border: "1px solid #ccc", padding: "2px"}}> edit </button>
+        <button onClick={() => deletePost(post.id)} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"> Delete </button>
+        <button onClick={() => startEditing(post)} className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"> edit </button>
 
 
       </div>
